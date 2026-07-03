@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lucie Lefèvre — Marketing & Content</title>
+  <title>Lucie Lefèvre — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:     #fddd88;
+      --cream:     #f5ebe0;
+      --beige:     #f0e6d6;
       --gold:      #da9c4e;
       --clay:      #b1743c;
+      --terracotta:#c4694a;
       --autumn:    #93481b;
       --fudge:     #562a15;
       --ink:       #21160f;
-      --offwhite:  #fdf6e3;
-      --serif:     'Playfair Display', Georgia, serif;
+      --offwhite:  #faf6f0;
+      --orange-bg: #c4694a;
+      --serif:     'Fraunces', Georgia, serif;
       --sans:      'Inter', system-ui, sans-serif;
     }
 
@@ -26,1165 +29,1086 @@
 
     body {
       font-family: var(--sans);
-      background-color: var(--offwhite);
+      background: var(--offwhite);
       color: var(--ink);
       line-height: 1.7;
-      font-size: 15px;
-    }
-
-    /* ── HEADER ─────────────────────────────────────────── */
-    header {
-      background-color: var(--fudge);
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(218,156,78,.18) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .header-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 60px 80px 80px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .header-eyebrow {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 28px;
-    }
-
-    .header-name {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 5vw, 5.2rem);
-      line-height: 1.05;
-      color: var(--offwhite);
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .header-name em {
-      color: var(--cream);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    .header-title {
-      font-family: var(--serif);
-      font-size: clamp(1rem, 1.6vw, 1.35rem);
-      color: var(--gold);
-      font-weight: 400;
-      font-style: italic;
-      margin-bottom: 36px;
-    }
-
-    .header-desc {
-      font-size: 14.5px;
-      color: rgba(253,246,227,.7);
-      max-width: 420px;
-      line-height: 1.8;
-      margin-bottom: 48px;
-    }
-
-    .header-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--cream);
-      color: var(--fudge);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: .06em;
-      padding: 14px 28px;
-      border-radius: 2px;
-      transition: background .2s, transform .2s;
-      align-self: flex-start;
-    }
-    .header-cta:hover { background: var(--gold); transform: translateY(-1px); }
-    .header-cta svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 80px 80px 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .header-badge-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      max-width: 380px;
-      width: 100%;
-    }
-
-    .badge {
-      background: rgba(253,246,227,.06);
-      border: 1px solid rgba(218,156,78,.25);
-      border-radius: 4px;
-      padding: 22px 20px;
-      transition: background .2s, border-color .2s;
-    }
-    .badge:hover { background: rgba(253,246,227,.1); border-color: rgba(218,156,78,.5); }
-
-    .badge-icon {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .badge-label {
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--cream);
-      margin-bottom: 4px;
-    }
-
-    .badge-sub {
-      font-size: 12px;
-      color: rgba(253,246,227,.5);
+      font-size: 14px;
     }
 
     /* ── NAV ─────────────────────────────────────────────── */
     nav {
-      background: var(--ink);
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 0;
-      padding: 0;
-      border-bottom: 1px solid rgba(218,156,78,.15);
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(250,246,240,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(86,42,21,.08);
     }
 
-    nav a {
-      font-size: 11.5px;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(253,246,227,.55);
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
       text-decoration: none;
-      padding: 16px 24px;
-      border-bottom: 2px solid transparent;
-      transition: color .2s, border-color .2s;
     }
-    nav a:hover { color: var(--cream); border-color: var(--gold); }
+    .nav-logo span { color: var(--terracotta); }
 
-    /* ── SECTIONS ────────────────────────────────────────── */
-    section { padding: 90px 80px; }
-    section:nth-child(even) { background: var(--offwhite); }
-    section:nth-child(odd)  { background: #faf0d7; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
 
-    .section-label {
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: var(--ink);
+      text-decoration: none;
+      opacity: .6;
+      transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-lang {
+      display: flex;
+      gap: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(86,42,21,.15);
+    }
+
+    .nav-lang span {
       font-size: 11px;
       font-weight: 600;
+      padding: 5px 12px;
+      cursor: pointer;
+    }
+    .nav-lang .active { background: var(--fudge); color: white; }
+    .nav-lang .inactive { color: var(--ink); opacity: .5; }
+
+    .nav-cta {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      padding: 8px 20px;
+      background: var(--fudge);
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--ink); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      padding: 120px 48px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      min-height: 90vh;
+      background: var(--offwhite);
+    }
+
+    .hero-left {
+      padding-right: 40px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--clay);
-      margin-bottom: 12px;
+      margin-bottom: 32px;
     }
+    .hero-eyebrow span { color: var(--terracotta); }
 
-    .section-title {
+    .hero-title {
       font-family: var(--serif);
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      font-weight: 900;
+      line-height: .95;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .hero-title .line2 {
       color: var(--fudge);
-      line-height: 1.15;
-      margin-bottom: 14px;
-      font-weight: 700;
+      -webkit-text-stroke: 2px var(--fudge);
+      -webkit-text-fill-color: transparent;
     }
 
-    .section-sub {
-      font-size: 15px;
-      color: var(--clay);
-      max-width: 540px;
-      margin-bottom: 60px;
-    }
-
-    /* ── EXPÉRIENCES ─────────────────────────────────────── */
-    #experience { background: var(--fudge); }
-    #experience .section-label { color: var(--gold); }
-    #experience .section-title { color: var(--offwhite); }
-    #experience .section-sub   { color: rgba(253,246,227,.6); }
-
-    .exp-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border-left: 2px solid rgba(218,156,78,.3);
-      padding-left: 36px;
-      margin-left: 8px;
-    }
-
-    .exp-item {
-      position: relative;
-      padding-bottom: 48px;
-    }
-    .exp-item:last-child { padding-bottom: 0; }
-
-    .exp-item::before {
-      content: '';
-      position: absolute;
-      left: -43px;
-      top: 6px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--gold);
-      border: 2px solid var(--fudge);
-      box-shadow: 0 0 0 3px rgba(218,156,78,.25);
-    }
-
-    .exp-meta {
-      font-size: 11.5px;
-      font-weight: 500;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--fudge);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 6px;
+      padding: 8px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
     }
+    .hero-badge::after { content: '●'; font-size: 8px; color: var(--gold); }
 
-    .exp-role {
+    .hero-tagline {
       font-family: var(--serif);
-      font-size: 1.25rem;
-      color: var(--offwhite);
-      font-weight: 600;
-      margin-bottom: 2px;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--clay);
+      font-weight: 400;
     }
 
-    .exp-company {
-      font-size: 13px;
-      color: rgba(253,246,227,.5);
-      margin-bottom: 16px;
-    }
-
-    .exp-bullets {
-      list-style: none;
+    .hero-right {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .exp-bullets li {
-      font-size: 14px;
-      color: rgba(253,246,227,.75);
-      line-height: 1.65;
-      padding-left: 18px;
+      justify-content: center;
+      align-items: center;
       position: relative;
     }
-    .exp-bullets li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--clay);
-      font-size: 12px;
+
+    .hero-photo-wrapper {
+      width: 380px;
+      height: 380px;
+      border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+      overflow: hidden;
+      position: relative;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* ── COMPÉTENCES ─────────────────────────────────────── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+    .hero-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .skill-card {
-      background: white;
-      border: 1px solid rgba(177,116,60,.15);
-      border-radius: 4px;
-      padding: 28px 26px;
-      transition: border-color .2s, box-shadow .2s, transform .2s;
-    }
-    .skill-card:hover {
-      border-color: var(--gold);
-      box-shadow: 0 4px 24px rgba(177,116,60,.12);
-      transform: translateY(-2px);
-    }
-
-    .skill-card-icon {
-      font-size: 24px;
-      margin-bottom: 14px;
-    }
-
-    .skill-card-title {
+    .hero-photo-placeholder {
       font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--fudge);
-      margin-bottom: 12px;
+      font-size: 3rem;
+      color: var(--clay);
+      opacity: .3;
     }
 
-    .skill-tags {
+    .hero-photo-label {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(33,22,15,.75);
+      backdrop-filter: blur(8px);
+      color: white;
+      font-family: var(--serif);
+      font-size: 13px;
+      padding: 8px 20px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .hero-photo-label span { color: var(--gold); }
+
+    .hero-star {
+      position: absolute;
+      top: 20px;
+      right: 60px;
+      color: var(--terracotta);
+      font-size: 18px;
+    }
+
+    /* ── ABOUT + PROJETS ────────────────────────────────── */
+    .about-projets {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      background: var(--cream);
+      border-radius: 12px;
+      margin: 0 48px 0;
+      overflow: hidden;
+    }
+
+    .about {
+      padding: 48px 40px;
+      border-right: 1px solid rgba(86,42,21,.08);
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 24px;
+    }
+    .section-heading strong { color: var(--ink); }
+    .section-heading span { color: var(--clay); opacity: .6; }
+
+    .about p {
+      font-size: 13.5px;
+      color: var(--ink);
+      opacity: .8;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .stat {
+      background: rgba(86,42,21,.08);
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .stat-number sup {
+      font-size: .5em;
+      vertical-align: super;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--clay);
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    .skill-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
     }
 
-    .tag {
-      font-size: 11.5px;
-      background: rgba(218,156,78,.12);
-      color: var(--autumn);
-      border: 1px solid rgba(218,156,78,.25);
-      border-radius: 2px;
-      padding: 4px 10px;
+    .skill-pill {
+      font-size: 11px;
       font-weight: 500;
-    }
-
-    /* ── OUTILS ──────────────────────────────────────────── */
-    #outils { background: var(--cream); }
-    #outils .section-title { color: var(--fudge); }
-    #outils .section-label { color: var(--autumn); }
-
-    .tools-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .tool-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(86,42,21,.08);
-      border: 1px solid rgba(86,42,21,.15);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(86,42,21,.2);
       color: var(--fudge);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 10px 18px;
-      border-radius: 100px;
-      transition: background .2s, border-color .2s;
-    }
-    .tool-pill:hover {
-      background: var(--fudge);
-      color: var(--cream);
-      border-color: var(--fudge);
-    }
-
-    /* ── RÉALISATIONS ───────────────────────────────────── */
-    #realisations { background: var(--offwhite); }
-
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 48px;
-    }
-
-    .filter-btn {
-      font-family: var(--sans);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: .06em;
-      padding: 8px 18px;
-      border-radius: 100px;
-      border: 1px solid rgba(177,116,60,.25);
       background: transparent;
-      color: var(--clay);
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .filter-btn:hover { border-color: var(--gold); color: var(--fudge); }
-    .filter-btn.active {
-      background: var(--fudge);
-      color: var(--cream);
-      border-color: var(--fudge);
     }
 
-    .real-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+    .projets {
+      padding: 48px 40px;
     }
 
-    .real-card {
-      background: white;
-      border: 1px solid rgba(177,116,60,.12);
-      border-radius: 6px;
-      overflow: hidden;
-      transition: border-color .2s, box-shadow .2s, transform .2s;
-    }
-    .real-card:hover {
-      border-color: var(--gold);
-      box-shadow: 0 8px 32px rgba(177,116,60,.12);
-      transform: translateY(-3px);
-    }
-    .real-card[hidden] { display: none; }
-
-    .real-card-color {
-      height: 8px;
-    }
-    .real-card-color.pro { background: linear-gradient(90deg, var(--autumn), var(--gold)); }
-    .real-card-color.academic { background: linear-gradient(90deg, var(--clay), var(--cream)); }
-
-    .real-card-body {
-      padding: 24px 24px 20px;
-    }
-
-    .real-card-top {
+    .projets-header {
       display: flex;
-      align-items: flex-start;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .projets-header .section-heading { margin-bottom: 0; }
+    .projets-header .section-heading span.star { color: var(--terracotta); }
+
+    .projets-year {
+      font-size: 12px;
+      color: var(--clay);
+      opacity: .6;
+    }
+
+    .projets-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .projet-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform .2s;
+    }
+    .projet-card:hover { transform: translateY(-2px); }
+
+    .projet-thumb {
+      height: 120px;
+      border-radius: 8px;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(218,156,78,.12),
+        rgba(218,156,78,.12) 8px,
+        rgba(218,156,78,.06) 8px,
+        rgba(218,156,78,.06) 16px
+      );
+      background-color: rgba(218,156,78,.08);
+      position: relative;
+      overflow: hidden;
       margin-bottom: 10px;
     }
 
-    .real-card-icon {
-      font-size: 28px;
-      flex-shrink: 0;
+    .projet-tags {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      display: flex;
+      gap: 4px;
     }
 
-    .real-card-tag {
+    .projet-tag {
+      font-size: 9.5px;
+      background: rgba(250,246,240,.85);
+      backdrop-filter: blur(4px);
+      padding: 3px 8px;
+      border-radius: 3px;
+      color: var(--clay);
+      font-weight: 500;
+    }
+
+    .projet-cat {
       font-size: 10px;
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 2px;
-      flex-shrink: 0;
+      color: var(--terracotta);
+      margin-bottom: 3px;
     }
-    .real-card-tag.cas-client  { background: rgba(147,72,27,.1); color: var(--autumn); }
-    .real-card-tag.livre-blanc { background: rgba(218,156,78,.15); color: var(--clay); }
-    .real-card-tag.ressource   { background: rgba(86,42,21,.08); color: var(--fudge); }
-    .real-card-tag.webinar     { background: rgba(177,116,60,.12); color: var(--autumn); }
-    .real-card-tag.strategie   { background: rgba(147,72,27,.1); color: var(--autumn); }
-    .real-card-tag.creative    { background: rgba(218,156,78,.15); color: var(--clay); }
-    .real-card-tag.evenement   { background: rgba(86,42,21,.08); color: var(--fudge); }
 
-    .real-card-title {
+    .projet-name {
       font-family: var(--serif);
-      font-size: 1.05rem;
+      font-size: .95rem;
       font-weight: 700;
-      color: var(--fudge);
-      margin-bottom: 6px;
-      line-height: 1.35;
+      color: var(--ink);
+      margin-bottom: 4px;
     }
 
-    .real-card-desc {
-      font-size: 13px;
+    .projet-desc {
+      font-size: 11.5px;
       color: var(--clay);
-      line-height: 1.6;
-      margin-bottom: 18px;
+      line-height: 1.5;
     }
 
-    .real-card-context {
-      font-size: 11px;
-      color: rgba(86,42,21,.45);
-      font-weight: 500;
-      letter-spacing: .04em;
-      margin-bottom: 16px;
+    /* ── EXPÉRIENCE + FORMATION ──────────────────────────── */
+    .exp-formation {
+      background: var(--terracotta);
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      margin-top: 48px;
     }
 
-    .real-card-dl {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .exp-formation .section-heading strong { color: white; }
+    .exp-formation .section-heading span { color: rgba(255,255,255,.5); }
+
+    .exp-section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 6px;
+      display: inline;
+    }
+
+    .exp-section-sub {
       font-size: 12px;
-      font-weight: 600;
-      color: var(--autumn);
-      text-decoration: none;
-      letter-spacing: .04em;
-      transition: color .2s;
-    }
-    .real-card-dl:hover { color: var(--fudge); }
-    .real-card-dl svg { width: 14px; height: 14px; }
-
-    /* ── CONTACT ─────────────────────────────────────────── */
-    #contact {
-      background: var(--ink);
-      text-align: center;
-      padding: 100px 80px;
+      color: rgba(255,255,255,.45);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      display: inline;
+      margin-left: 8px;
     }
 
-    #contact .section-label { color: var(--gold); }
-    #contact .section-title { color: var(--offwhite); margin-bottom: 20px; }
-    #contact p {
-      color: rgba(253,246,227,.6);
-      font-size: 15px;
-      max-width: 480px;
-      margin: 0 auto 48px;
+    .exp-timeline {
+      margin-top: 32px;
+      border-left: 2px solid rgba(255,255,255,.2);
+      padding-left: 28px;
     }
 
-    .contact-links {
+    .exp-entry {
+      position: relative;
+      padding-bottom: 32px;
+    }
+    .exp-entry:last-child { padding-bottom: 0; }
+
+    .exp-entry::before {
+      content: '';
+      position: absolute;
+      left: -33px;
+      top: 5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.5);
+    }
+
+    .exp-entry-header {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 13px;
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .exp-dates {
+      font-size: 11px;
+      color: rgba(255,255,255,.6);
       font-weight: 500;
-      letter-spacing: .05em;
-      text-decoration: none;
-      padding: 14px 28px;
+      white-space: nowrap;
+    }
+
+    .exp-company {
+      font-size: 12px;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 6px;
+    }
+
+    .exp-desc {
+      font-size: 12.5px;
+      color: rgba(255,255,255,.7);
+      line-height: 1.6;
+    }
+
+    .formation-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .formation-card {
+      background: rgba(33,22,15,.35);
+      backdrop-filter: blur(4px);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .formation-name {
+      font-family: var(--serif);
+      font-size: .85rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .formation-school {
+      font-size: 11px;
+      color: rgba(255,255,255,.5);
+      margin-top: 2px;
+    }
+
+    .formation-year {
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ── COMPÉTENCES + LANGUES ───────────────────────────── */
+    .competences-langues {
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      background: var(--offwhite);
+    }
+
+    .comp-section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--ink);
+      display: inline;
+    }
+
+    .comp-section-sub {
+      font-size: 12px;
+      color: var(--clay);
+      opacity: .5;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      display: inline;
+      margin-left: 8px;
+    }
+
+    .comp-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+
+    .comp-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .comp-pill {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(86,42,21,.15);
+      color: var(--fudge);
+    }
+
+    .comp-pill.soft {
+      border-color: var(--terracotta);
+      color: var(--terracotta);
+      background: rgba(196,105,74,.06);
+    }
+
+    .lang-item {
+      margin-bottom: 16px;
+    }
+
+    .lang-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .lang-name {
+      font-family: var(--serif);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .lang-level {
+      font-size: 11px;
+      color: var(--clay);
+    }
+
+    .lang-bar {
+      height: 4px;
+      background: rgba(86,42,21,.08);
       border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .lang-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--terracotta);
+    }
+
+    .engagements-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .engagement-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .engagement-pill {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(86,42,21,.12);
+      color: var(--clay);
+    }
+
+    /* ── CONTACT / FOOTER ───────────────────────────────── */
+    .contact-footer {
+      background: var(--ink);
+      padding: 80px 48px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .contact-left-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .contact-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .contact-title em {
+      color: var(--terracotta);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .contact-sub {
+      font-family: var(--serif);
+      font-size: .95rem;
+      font-style: italic;
+      color: rgba(255,255,255,.4);
+      margin-top: 12px;
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,.7);
+    }
+
+    .contact-line svg {
+      width: 16px;
+      height: 16px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .contact-line a {
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .contact-line a:hover { color: white; }
+
+    .contact-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .contact-btn {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 20px;
+      text-decoration: none;
       transition: all .2s;
     }
 
-    .contact-link.primary {
-      background: var(--cream);
-      color: var(--fudge);
-    }
-    .contact-link.primary:hover { background: var(--gold); }
-
-    .contact-link.secondary {
+    .contact-btn.linkedin {
       background: transparent;
-      color: var(--cream);
-      border: 1px solid rgba(253,221,136,.3);
+      border: 1px solid rgba(255,255,255,.25);
+      color: white;
     }
-    .contact-link.secondary:hover { border-color: var(--cream); background: rgba(253,221,136,.06); }
+    .contact-btn.linkedin:hover { background: rgba(255,255,255,.1); }
 
-    /* ── FOOTER ──────────────────────────────────────────── */
+    .contact-btn.primary {
+      background: var(--gold);
+      color: var(--ink);
+      border: 1px solid var(--gold);
+    }
+    .contact-btn.primary:hover { background: var(--clay); color: white; }
+
+    .contact-btn.cv {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.25);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .contact-btn.cv:hover { background: rgba(255,255,255,.1); }
+
     footer {
       background: var(--ink);
-      border-top: 1px solid rgba(218,156,78,.1);
+      border-top: 1px solid rgba(255,255,255,.06);
       text-align: center;
-      padding: 24px 40px;
-      font-size: 12px;
-      color: rgba(253,246,227,.3);
+      padding: 20px;
+      font-size: 11px;
+      color: rgba(255,255,255,.2);
     }
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 900px) {
-      header { grid-template-columns: 1fr; min-height: auto; }
-      .header-left { padding: 80px 40px 40px; }
-      .header-right { padding: 20px 40px 70px; justify-content: flex-start; }
-      .header-badge-grid { max-width: 100%; grid-template-columns: 1fr 1fr; }
-      section { padding: 70px 40px; }
-      #contact { padding: 70px 40px; }
-      nav a { padding: 14px 16px; }
+      nav { padding: 14px 24px; }
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 40px; min-height: auto; }
+      .hero-left { padding-right: 0; }
+      .hero-right { order: -1; }
+      .hero-photo-wrapper { width: 240px; height: 240px; }
+      .about-projets { grid-template-columns: 1fr; margin: 0 24px; }
+      .about { border-right: none; border-bottom: 1px solid rgba(86,42,21,.08); }
+      .exp-formation { grid-template-columns: 1fr; padding: 60px 24px; }
+      .competences-langues { grid-template-columns: 1fr; padding: 60px 24px; }
+      .contact-footer { grid-template-columns: 1fr; padding: 60px 24px; }
     }
 
     @media (max-width: 600px) {
-      .header-left { padding: 60px 24px 32px; }
-      .header-right { padding: 16px 24px 60px; }
-      section { padding: 60px 24px; }
-      #contact { padding: 60px 24px; }
-      nav { justify-content: flex-start; overflow-x: auto; }
-      nav a { white-space: nowrap; font-size: 10.5px; padding: 14px 14px; }
+      .hero-title { font-size: 3.5rem; }
+      .projets-grid { grid-template-columns: 1fr; }
+      .stats { flex-wrap: wrap; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══════════════════════════════════════════════ -->
-<header>
-  <div class="header-left">
-    <p class="header-eyebrow">Portfolio — Marketing &amp; Content</p>
-    <h1 class="header-name">Lucie<br><em>Lefèvre</em></h1>
-    <p class="header-title">Marketing &amp; Growth · Content Strategist</p>
-    <p class="header-desc">
-      Je transforme des produits B2B complexes en contenus qui engagent — cas clients, webinars, campagnes LinkedIn, lancements produit. Aujourd'hui en alternance chez HeyTeam, je pilote la stratégie contenu de A à Z.
-    </p>
-    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a href="#contact" class="header-cta">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Me contacter
-      </a>
-      <a href="docs/CV%20Lucie%20LEFEVRE%20-%20CDI.pdf" target="_blank" class="header-cta" style="background: transparent; border: 1px solid rgba(253,221,136,.35); color: var(--cream);" onmouseover="this.style.background='rgba(253,221,136,.1)'" onmouseout="this.style.background='transparent'">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Télécharger mon CV
-      </a>
-    </div>
-  </div>
-
-  <div class="header-right">
-    <div class="header-badge-grid">
-      <div class="badge">
-        <div class="badge-icon">✍️</div>
-        <div class="badge-label">Content</div>
-        <div class="badge-sub">Cas clients, livres blancs, newsletters</div>
-      </div>
-      <div class="badge">
-        <div class="badge-icon">🎙️</div>
-        <div class="badge-label">Webinars</div>
-        <div class="badge-sub">5+ co-brandés pilotés end-to-end</div>
-      </div>
-      <div class="badge">
-        <div class="badge-icon">🔗</div>
-        <div class="badge-label">LinkedIn</div>
-        <div class="badge-sub">Stratégie organique B2B</div>
-      </div>
-      <div class="badge">
-        <div class="badge-icon">📦</div>
-        <div class="badge-label">Lancement</div>
-        <div class="badge-sub">Messaging, plan de com, go-to-market</div>
-      </div>
-    </div>
-  </div>
-</header>
-
 <!-- ══ NAV ══════════════════════════════════════════════════ -->
 <nav>
-  <a href="#experience">Expériences</a>
-  <a href="#realisations">Réalisations</a>
-  <a href="#competences">Compétences</a>
-  <a href="#outils">Outils</a>
-  <a href="#contact">Contact</a>
+  <a href="#" class="nav-logo"><span>✦</span> Lucie Lefèvre</a>
+  <div class="nav-links">
+    <a href="#about">À propos</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#projets-section">Projets</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang">
+      <span class="active">FR</span>
+      <span class="inactive">EN</span>
+    </div>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
 </nav>
 
-<!-- ══ EXPÉRIENCES ══════════════════════════════════════════ -->
-<section id="experience">
-  <p class="section-label">Parcours</p>
-  <h2 class="section-title">Expériences</h2>
-  <p class="section-sub">4 expériences, autant de contextes différents — du SaaS B2B à l'influence, en passant par le design et l'événementiel.</p>
-
-  <div class="exp-list">
-
-    <div class="exp-item">
-      <p class="exp-meta">Sept. 2025 – Sept. 2026 · Alternance</p>
-      <p class="exp-role">Marketing &amp; Growth Coordinator</p>
-      <p class="exp-company">HeyTeam — SaaS B2B RH</p>
-      <ul class="exp-bullets">
-        <li>Production et publication de <strong>17 cas clients</strong> (Veolia, JCDecaux, SFR, Boucheron, Parc Astérix, Bforbank…) — interviews, rédaction, mise en page</li>
-        <li>Pilotage end-to-end de <strong>5+ webinars co-brandés</strong> : stratégie, landing page, emailings, animation live, post-event (Qolaig, Edflex, Ekium, Reflect × HeyTeam)</li>
-        <li>Gestion des <strong>lancements produit</strong> Foldio.ai et Capi (IA agentique) : plan de com, posts LinkedIn, emailings, UserFlow, livre blanc IA RH</li>
-        <li>Animation de la <strong>présence LinkedIn HeyTeam</strong> : stratégie éditoriale, carrousels, posts corporate, coordination des comptes dirigeants</li>
-        <li>Gestion des <strong>campagnes HubSpot</strong> avec suivi des UTM, segmentation et reporting</li>
-        <li>Coordination multi-équipes au quotidien (CSM, Sales, Produit, Design)</li>
-      </ul>
+<!-- ══ HERO ═════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow"><span>✦</span> CONTENT · COMMUNICATION · GROWTH</p>
+    <h1 class="hero-title">PORT<br><span class="line2">FOLIO</span></h1>
+    <div class="hero-badge">DIGITAL MARKETER</div>
+    <p class="hero-tagline">le contenu qui connecte, le growth qui compte.</p>
+  </div>
+  <div class="hero-right">
+    <span class="hero-star">✦</span>
+    <div class="hero-photo-wrapper">
+      <div class="hero-photo-placeholder">LL</div>
+      <div class="hero-photo-label">Lucie Lefèvre <span>✦</span></div>
     </div>
-
-    <div class="exp-item">
-      <p class="exp-meta">2025 · Stage · 6 mois</p>
-      <p class="exp-role">Influence Campaign Manager</p>
-      <p class="exp-company">KĀST</p>
-      <ul class="exp-bullets">
-        <li>Gestion de campagnes d'influence de A à Z : identification, qualification, négociation, brief créatif, suivi des performances</li>
-        <li>Constitution et enrichissement de bases de données d'influenceurs</li>
-        <li>Reporting et analyse des résultats par campagne</li>
-      </ul>
-    </div>
-
-    <div class="exp-item">
-      <p class="exp-meta">2024 · Alternance · 1 an</p>
-      <p class="exp-role">Chargée de communication digitale</p>
-      <p class="exp-company">Björka Design</p>
-      <ul class="exp-bullets">
-        <li>Gestion des réseaux sociaux, rédaction SEO et production de contenus</li>
-        <li>Participation au projet de refonte du site web : UX, arborescence, contenus</li>
-      </ul>
-    </div>
-
-    <div class="exp-item">
-      <p class="exp-meta">2022 · Stage · 3 mois</p>
-      <p class="exp-role">Assistante cheffe de projet</p>
-      <p class="exp-company">K.I.T. Group France</p>
-      <ul class="exp-bullets">
-        <li>Organisation d'un congrès international : coordination logistique, gestion des intervenants, suivi prestataires</li>
-      </ul>
-    </div>
-
   </div>
 </section>
 
-<!-- ══ RÉALISATIONS ═════════════════════════════════════════ -->
-<section id="realisations">
-  <p class="section-label">Portfolio</p>
-  <h2 class="section-title">Réalisations</h2>
-  <p class="section-sub">Cas clients, livres blancs, projets de stratégie — une sélection de travaux professionnels et académiques.</p>
+<!-- ══ ABOUT + PROJETS ═════════════════════════════════════ -->
+<div class="about-projets" id="about">
 
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">Tout</button>
-    <button class="filter-btn" data-filter="pro">Pro — HeyTeam</button>
-    <button class="filter-btn" data-filter="strategie">Stratégie de marque</button>
-    <button class="filter-btn" data-filter="creative">Projets créatifs</button>
+  <div class="about">
+    <p class="section-heading"><strong>À PROPOS</strong> <span>/ ABOUT</span></p>
+    <p>Diplômée d'un MBA Digital Marketing à l'EFAP, je construis depuis 3 ans une expertise en content marketing, communication et marketing produit en B2B. À l'aise autant en autonomie qu'en coordination d'équipe, je manie l'IA comme un outil de travail quotidien — pas comme un buzzword.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">ans<br>d'expérience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">15</div>
+        <div class="stat-label">cas clients<br>B2B</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">5<sup>+</sup></div>
+        <div class="stat-label">webinars<br>pilotés</div>
+      </div>
+    </div>
+
+    <div class="skill-pills">
+      <span class="skill-pill">Content marketing</span>
+      <span class="skill-pill">Product marketing</span>
+      <span class="skill-pill">Growth &amp; campagnes</span>
+    </div>
   </div>
 
-  <div class="real-grid">
-
-    <!-- ─── PRO : HEYTEAM ─────────────────────────────── -->
-    <div class="real-card" data-cat="pro">
-      <div class="real-card-color pro"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">📄</span>
-          <span class="real-card-tag cas-client">Cas client</span>
-        </div>
-        <p class="real-card-title">Veolia Eau &amp; Propreté</p>
-        <p class="real-card-desc">Cas client complet — interview, rédaction et mise en page pour un grand compte du secteur environnement.</p>
-        <p class="real-card-context">HeyTeam · 2025–2026</p>
-        <a href="docs/Cas%20Client%20-%20Veolia%20E%26P.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
+  <div class="projets" id="projets-section">
+    <div class="projets-header">
+      <p class="section-heading"><span class="star">✦</span> <strong>PROJETS</strong> <span>/ SELECTED WORK</span></p>
+      <span class="projets-year">2022 — 2026</span>
     </div>
 
-    <div class="real-card" data-cat="pro">
-      <div class="real-card-color pro"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">📄</span>
-          <span class="real-card-tag webinar">Webinar · Cas client</span>
-        </div>
-        <p class="real-card-title">Ekium × HeyTeam</p>
-        <p class="real-card-desc">Digitaliser l'onboarding dans le secteur industriel — webinar co-brandé et cas client associé.</p>
-        <p class="real-card-context">HeyTeam · 2025–2026</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-          <a href="docs/Ekium%20x%20HeyTeam%20-%20Digitaliser%20lonboarding%20secteur%20industriel.pdf" target="_blank" class="real-card-dl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            Voir le document
-          </a>
-          <a href="https://watch.getcontrast.io/register/heyteam-recrutement-et-onboarding-en-milieu-industriel-ekium-x-heyteam" target="_blank" rel="noopener" class="real-card-dl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            Voir le replay
-          </a>
-        </div>
-      </div>
-    </div>
+    <div class="projets-grid">
 
-    <div class="real-card" data-cat="pro">
-      <div class="real-card-color pro"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">📄</span>
-          <span class="real-card-tag cas-client">Cas client</span>
+      <a href="https://watch.getcontrast.io/register/heyteam-recrutement-et-onboarding-en-milieu-industriel-ekium-x-heyteam" target="_blank" rel="noopener" class="projet-card">
+        <div class="projet-thumb">
+          <div class="projet-tags">
+            <span class="projet-tag">webinar</span>
+            <span class="projet-tag">replay</span>
+          </div>
         </div>
-        <p class="real-card-title">LPCR × HeyTeam</p>
-        <p class="real-card-desc">Cas client pour le réseau de crèches LPCR — interview, rédaction et mise en page.</p>
-        <p class="real-card-context">HeyTeam · 2025–2026</p>
-        <a href="docs/LPCR%20x%20HeyTeam%20-%20Cas%20client.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
+        <p class="projet-cat">Content</p>
+        <p class="projet-name">Webinars co brandés</p>
+        <p class="projet-desc">5+ webinars pilotés du concept à la diffusion — HeyTeam.</p>
+      </a>
 
-    <div class="real-card" data-cat="pro">
-      <div class="real-card-color pro"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">📘</span>
-          <span class="real-card-tag livre-blanc">Livre blanc</span>
+      <a href="docs/Cas%20Client%20-%20Veolia%20E%26P.pdf" target="_blank" class="projet-card">
+        <div class="projet-thumb">
+          <div class="projet-tags">
+            <span class="projet-tag">cas client</span>
+            <span class="projet-tag">pdf</span>
+          </div>
         </div>
-        <p class="real-card-title">Onboarding &amp; IA qui agit</p>
-        <p class="real-card-desc">Livre blanc sur l'IA agentique appliquée à l'onboarding RH — rédaction complète et mise en page.</p>
-        <p class="real-card-context">HeyTeam · 2026</p>
-        <a href="docs/Livre%20Blanc%20-%20Onboarding%20%20IA%20qui%20agit%20-%202026.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
+        <p class="projet-cat">Éditorial</p>
+        <p class="projet-name">Cas clients B2B</p>
+        <p class="projet-desc">15+ cas clients : Veolia, JCDecaux, SFR, Boucheron, Parc Astérix…</p>
+      </a>
 
-    <div class="real-card" data-cat="pro">
-      <div class="real-card-color pro"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">⚡</span>
-          <span class="real-card-tag ressource">Ressource</span>
+      <a href="docs/Livre%20Blanc%20-%20Onboarding%20%20IA%20qui%20agit%20-%202026.pdf" target="_blank" class="projet-card">
+        <div class="projet-thumb">
+          <div class="projet-tags">
+            <span class="projet-tag">UTM</span>
+            <span class="projet-tag">landing</span>
+          </div>
         </div>
-        <p class="real-card-title">3 prompts RH à utiliser</p>
-        <p class="real-card-desc">Lead magnet — guide pratique de prompts IA pour les professionnels RH.</p>
-        <p class="real-card-context">HeyTeam · 2025–2026</p>
-        <a href="docs/3%20prompts%20RH%20%C3%A0%20utiliser%20d%C3%A8s%20maintenant%20(1).pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
+        <p class="projet-cat">Product Marketing</p>
+        <p class="projet-name">Lancements produit IA</p>
+        <p class="projet-desc">Foldio.ai &amp; Capi : plans de com, UserFlow, livre blanc IA.</p>
+      </a>
 
-    <div class="real-card" data-cat="pro">
-      <div class="real-card-color pro"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🗂️</span>
-          <span class="real-card-tag ressource">Template</span>
+      <a href="#" class="projet-card">
+        <div class="projet-thumb">
+          <div class="projet-tags">
+            <span class="projet-tag">campagne</span>
+            <span class="projet-tag">créateurs</span>
+          </div>
         </div>
-        <p class="real-card-title">Arborescence GED</p>
-        <p class="real-card-desc">Template d'arborescence de Gestion Électronique des Documents pour structurer la documentation interne.</p>
-        <p class="real-card-context">HeyTeam · 2025–2026</p>
-        <a href="docs/Template%20-%20Arborescence%20GED.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
+        <p class="projet-cat">Influence</p>
+        <p class="projet-name">Campagnes d'influence</p>
+        <p class="projet-desc">Identification &amp; négociation créateurs, suivi de perf — KĀST.</p>
+      </a>
 
-    <div class="real-card" data-cat="pro">
-      <div class="real-card-color pro"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🎙️</span>
-          <span class="real-card-tag webinar">Webinar</span>
-        </div>
-        <p class="real-card-title">5 automatisations IA pour les RH</p>
-        <p class="real-card-desc">Webinar sur les automatisations IA incontournables pour les professionnels RH.</p>
-        <p class="real-card-context">HeyTeam · 2025–2026</p>
-        <a href="https://watch.getcontrast.io/register/les-cinq-automatisations-ia-que-tous-les-rh-devraient-connaitre" target="_blank" rel="noopener" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Voir le replay
-        </a>
-      </div>
     </div>
-
-    <!-- ─── STRATÉGIE DE MARQUE ───────────────────────── -->
-    <div class="real-card" data-cat="strategie">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🏄</span>
-          <span class="real-card-tag strategie">Stratégie</span>
-        </div>
-        <p class="real-card-title">Billabong — Stratégie de marque</p>
-        <p class="real-card-desc">Analyse et recommandation stratégique complète pour la marque Billabong.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/BILLABONG%20FINAL.pdf.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="strategie">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🏄</span>
-          <span class="real-card-tag strategie">Présentation orale</span>
-        </div>
-        <p class="real-card-title">Billabong — Soutenance</p>
-        <p class="real-card-desc">Support de présentation orale pour le projet de stratégie Billabong.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/ORAL%20BILLABONG.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="strategie">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🍬</span>
-          <span class="real-card-tag strategie">Stratégie</span>
-        </div>
-        <p class="real-card-title">Ricola</p>
-        <p class="real-card-desc">Recommandation stratégique pour la marque Ricola.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/Ricola.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="strategie">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🏰</span>
-          <span class="real-card-tag strategie">Communication de crise</span>
-        </div>
-        <p class="real-card-title">Disney — Gestion de crise</p>
-        <p class="real-card-desc">Étude de cas sur la communication de crise de Disney.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/Communication%20de%20crise%20Disney.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="strategie">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">📋</span>
-          <span class="real-card-tag strategie">Recommandation</span>
-        </div>
-        <p class="real-card-title">Recommandation stratégique</p>
-        <p class="real-card-desc">Dossier de recommandation stratégique complet.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/reco%20.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <!-- ─── PROJETS CRÉATIFS ──────────────────────────── -->
-    <div class="real-card" data-cat="creative">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🎪</span>
-          <span class="real-card-tag creative">Compétition nationale</span>
-        </div>
-        <p class="real-card-title">Sunska — Compétition nationale</p>
-        <p class="real-card-desc">Présentation réalisée dans le cadre d'une compétition nationale autour du festival Sunska.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/PR%C3%89SENTATION%20Sunska%20compet%20nationale.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="creative">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">💡</span>
-          <span class="real-card-tag creative">Concept créatif</span>
-        </div>
-        <p class="real-card-title">La Big Idea</p>
-        <p class="real-card-desc">Travail de conception créative — de l'insight au concept publicitaire.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/La%20big%20Idea%20.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="creative">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🚒</span>
-          <span class="real-card-tag evenement">Événementiel</span>
-        </div>
-        <p class="real-card-title">Ô PINPON</p>
-        <p class="real-card-desc">Projet événementiel — concept, stratégie et présentation.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/Diapo%20%C3%94%20PINPON.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="creative">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🌙</span>
-          <span class="real-card-tag creative">Masterclass</span>
-        </div>
-        <p class="real-card-title">Masterclass Boîte de nuit</p>
-        <p class="real-card-desc">Présentation masterclass sur l'univers du nightlife et de l'événementiel.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/Masterclass%20boite%20de%20nuit.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="creative">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🎬</span>
-          <span class="real-card-tag creative">Projet créatif</span>
-        </div>
-        <p class="real-card-title">Silent</p>
-        <p class="real-card-desc">Projet créatif — concept et présentation.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/Silent.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="creative">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">👥</span>
-          <span class="real-card-tag creative">Projet de groupe</span>
-        </div>
-        <p class="real-card-title">Groupe 22</p>
-        <p class="real-card-desc">Projet collectif — stratégie et présentation de groupe.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/GROUPE%2022%20(2).pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
-    <div class="real-card" data-cat="creative">
-      <div class="real-card-color academic"></div>
-      <div class="real-card-body">
-        <div class="real-card-top">
-          <span class="real-card-icon">🎲</span>
-          <span class="real-card-tag creative">Projet créatif</span>
-        </div>
-        <p class="real-card-title">Bingo MCU</p>
-        <p class="real-card-desc">Projet créatif autour de l'univers Marvel.</p>
-        <p class="real-card-context">Projet académique</p>
-        <a href="docs/bingo%20MCU.pdf" target="_blank" class="real-card-dl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Voir le document
-        </a>
-      </div>
-    </div>
-
   </div>
-</section>
 
-<script>
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.real-card').forEach(card => {
-        card.hidden = filter !== 'all' && card.dataset.cat !== filter;
-      });
-    });
-  });
-</script>
+</div>
 
-<!-- ══ COMPÉTENCES ══════════════════════════════════════════ -->
-<section id="competences">
-  <p class="section-label">Savoir-faire</p>
-  <h2 class="section-title">Compétences</h2>
-  <p class="section-sub">De la stratégie au pixel, en passant par l'organisation — un spectre large, avec des vrais sujets de prédilection.</p>
+<!-- ══ EXPÉRIENCE + FORMATION ══════════════════════════════ -->
+<section class="exp-formation" id="parcours">
 
-  <div class="skills-grid">
+  <div>
+    <span class="exp-section-title">Expérience</span>
+    <span class="exp-section-sub">/ EXPERIENCE</span>
 
-    <div class="skill-card">
-      <div class="skill-card-icon">✍️</div>
-      <p class="skill-card-title">Création &amp; stratégie de contenu</p>
-      <div class="skill-tags">
-        <span class="tag">Cas clients</span>
-        <span class="tag">Livres blancs</span>
-        <span class="tag">Newsletters</span>
-        <span class="tag">Scripts webinar</span>
-        <span class="tag">Copywriting B2B</span>
-        <span class="tag">Emailings</span>
-        <span class="tag">Landing pages</span>
-        <span class="tag">Calendrier éditorial</span>
-        <span class="tag">Storytelling</span>
+    <div class="exp-timeline">
+
+      <div class="exp-entry">
+        <div class="exp-entry-header">
+          <span class="exp-role">Marketing &amp; Growth Coordinator</span>
+          <span class="exp-dates">Sept. 2025 — Sept. 2026</span>
+        </div>
+        <p class="exp-company">HeyTeam · Alternance · 1 an</p>
+        <p class="exp-desc">Pilotage de 5+ webinars co-brandés, 15+ cas clients, lancements produit Foldio.ai &amp; Capi, livre blanc IA &amp; RH, campagnes HubSpot et reporting de performance.</p>
       </div>
-    </div>
 
-    <div class="skill-card">
-      <div class="skill-card-icon">🔗</div>
-      <p class="skill-card-title">Social Media</p>
-      <div class="skill-tags">
-        <span class="tag">LinkedIn organique</span>
-        <span class="tag">Carrousels</span>
-        <span class="tag">Stratégie de compte</span>
-        <span class="tag">Community management B2B</span>
+      <div class="exp-entry">
+        <div class="exp-entry-header">
+          <span class="exp-role">Influence Campaign Manager</span>
+          <span class="exp-dates">Janv. — Juillet 2025</span>
+        </div>
+        <p class="exp-company">KĀST · Stage · 6 mois</p>
+        <p class="exp-desc">Gestion de campagnes d'influence : identification et négociation des créateurs, suivi de performance et reporting.</p>
       </div>
-    </div>
 
-    <div class="skill-card">
-      <div class="skill-card-icon">🎙️</div>
-      <p class="skill-card-title">Webinars &amp; événements digitaux</p>
-      <div class="skill-tags">
-        <span class="tag">Pilotage end-to-end</span>
-        <span class="tag">Landing page</span>
-        <span class="tag">Emailing</span>
-        <span class="tag">Animation live</span>
-        <span class="tag">Post-event</span>
-        <span class="tag">Replays</span>
+      <div class="exp-entry">
+        <div class="exp-entry-header">
+          <span class="exp-role">Chargée de communication</span>
+          <span class="exp-dates">Sept. 2023 — Sept. 2024</span>
+        </div>
+        <p class="exp-company">Björka Design · Alternance · 1 an</p>
+        <p class="exp-desc">Stratégie éditoriale &amp; rédaction SEO, animation des réseaux sociaux et pilotage de la refonte du site web.</p>
       </div>
-    </div>
 
-    <div class="skill-card">
-      <div class="skill-card-icon">📦</div>
-      <p class="skill-card-title">Marketing produit</p>
-      <div class="skill-tags">
-        <span class="tag">Lancement produit</span>
-        <span class="tag">Messaging</span>
-        <span class="tag">One-pager</span>
-        <span class="tag">Plan de com</span>
-        <span class="tag">Construction de LP</span>
+      <div class="exp-entry">
+        <div class="exp-entry-header">
+          <span class="exp-role">Assistante cheffe de projet</span>
+          <span class="exp-dates">Juin — Août 2022</span>
+        </div>
+        <p class="exp-company">K.I.T. Group · Stage · 3 mois</p>
+        <p class="exp-desc">Coordination de projet, suivi des prestataires et production des supports de communication.</p>
       </div>
-    </div>
 
-    <div class="skill-card">
-      <div class="skill-card-icon">🗂️</div>
-      <p class="skill-card-title">Organisation &amp; gestion de projet</p>
-      <div class="skill-tags">
-        <span class="tag">Coordination multi-équipes</span>
-        <span class="tag">Gestion prestataires</span>
-        <span class="tag">Suivi budget</span>
-        <span class="tag">CSM · Sales · Tech · Design</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══ OUTILS ════════════════════════════════════════════════ -->
-<section id="outils">
-  <p class="section-label">Stack</p>
-  <h2 class="section-title">Outils &amp; plateformes</h2>
-  <p class="section-sub">Les outils que j'utilise au quotidien, avec différents niveaux de maîtrise.</p>
-
-  <div style="margin-bottom: 32px;">
-    <p style="font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--autumn); margin-bottom: 14px;">Maîtrise avancée</p>
-    <div class="tools-grid">
-      <span class="tool-pill">📊 HubSpot</span>
-      <span class="tool-pill">🎨 Canva</span>
-      <span class="tool-pill">📓 Notion</span>
-      <span class="tool-pill">🖥️ Contrast</span>
-      <span class="tool-pill">🌊 UserFlow</span>
-      <span class="tool-pill">⚡ Reactin.io</span>
-      <span class="tool-pill">✨ Gamma</span>
     </div>
   </div>
 
   <div>
-    <p style="font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--autumn); margin-bottom: 14px;">Bases solides</p>
-    <div class="tools-grid">
-      <span class="tool-pill">🔍 Google Ads</span>
-      <span class="tool-pill">📘 Meta Ads</span>
-      <span class="tool-pill">🖌️ Suite Adobe</span>
+    <span class="exp-section-title">Formation</span>
+    <span class="exp-section-sub">/ EDUCATION</span>
+
+    <div class="formation-list">
+      <div class="formation-card">
+        <div>
+          <p class="formation-name">Master Communication · MBA DMB</p>
+          <p class="formation-school">EFAP</p>
+        </div>
+        <span class="formation-year">2024 — 2026</span>
+      </div>
+      <div class="formation-card">
+        <div>
+          <p class="formation-name">Bachelor Communication</p>
+          <p class="formation-school">FormaSup Campus</p>
+        </div>
+        <span class="formation-year">2022 — 2024</span>
+      </div>
+      <div class="formation-card">
+        <div>
+          <p class="formation-name">BBA · track anglophone</p>
+          <p class="formation-school">ESSEC Business School</p>
+        </div>
+        <span class="formation-year">2021 — 2023</span>
+      </div>
+      <div class="formation-card">
+        <div>
+          <p class="formation-name">Dual Diploma · BAC SES AMC</p>
+          <p class="formation-school">Saint Joseph de Tivoli, Bordeaux</p>
+        </div>
+        <span class="formation-year">2021</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ COMPÉTENCES + LANGUES ═══════════════════════════════ -->
+<section class="competences-langues">
+
+  <div>
+    <div style="margin-bottom: 32px;">
+      <span class="comp-section-title">Compétences</span>
+      <span class="comp-section-sub">/ SKILLS</span>
+    </div>
+
+    <p class="comp-group-title">Hard Skills</p>
+    <div class="comp-pills">
+      <span class="comp-pill">Suite Adobe</span>
+      <span class="comp-pill">Pack Office</span>
+      <span class="comp-pill">Réseaux sociaux</span>
+      <span class="comp-pill">Montage vidéo</span>
+      <span class="comp-pill">Google / Meta Ads</span>
+      <span class="comp-pill">Rédaction SEO</span>
+      <span class="comp-pill">HubSpot</span>
+      <span class="comp-pill">UX Design</span>
+    </div>
+
+    <p class="comp-group-title">Soft Skills</p>
+    <div class="comp-pills">
+      <span class="comp-pill soft">Esprit d'équipe</span>
+      <span class="comp-pill soft">Gestion de projet</span>
+      <span class="comp-pill soft">Proactivité</span>
+      <span class="comp-pill soft">Adaptation</span>
+      <span class="comp-pill soft">Flexibilité</span>
+      <span class="comp-pill soft">Curiosité</span>
+      <span class="comp-pill soft">Organisation</span>
+    </div>
+  </div>
+
+  <div>
+    <div style="margin-bottom: 32px;">
+      <span class="comp-section-title">Langues</span>
+      <span class="comp-section-sub">/ LANGUAGES</span>
+    </div>
+
+    <div class="lang-item">
+      <div class="lang-header">
+        <span class="lang-name">Français</span>
+        <span class="lang-level">Langue maternelle</span>
+      </div>
+      <div class="lang-bar"><div class="lang-bar-fill" style="width: 100%"></div></div>
+    </div>
+
+    <div class="lang-item">
+      <div class="lang-header">
+        <span class="lang-name">Anglais</span>
+        <span class="lang-level">B2 · IELTS 7.5</span>
+      </div>
+      <div class="lang-bar"><div class="lang-bar-fill" style="width: 85%"></div></div>
+    </div>
+
+    <div class="lang-item">
+      <div class="lang-header">
+        <span class="lang-name">Allemand</span>
+        <span class="lang-level">Bases</span>
+      </div>
+      <div class="lang-bar"><div class="lang-bar-fill" style="width: 30%"></div></div>
+    </div>
+
+    <p class="engagements-title">Engagements</p>
+    <div class="engagement-pills">
+      <span class="engagement-pill">HeForShe ESSEC · 2021-24</span>
+      <span class="engagement-pill">UN Project · 2020</span>
+      <span class="engagement-pill">BDE Lycée · 2020-21</span>
+      <span class="engagement-pill">Déléguée de classe · 2015-21</span>
+      <span class="engagement-pill">Option théâtre · 2017-21</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ CONTACT ════════════════════════════════════════════════ -->
+<section class="contact-footer" id="contact">
+  <div>
+    <p class="contact-left-eyebrow">ON CRÉE QUELQUE CHOSE QUI COMPTE ?</p>
+    <h2 class="contact-title">Travaillons<br><em>ensemble.</em></h2>
+    <p class="contact-sub">let's create something meaningful →</p>
+  </div>
+  <div class="contact-right">
+    <div class="contact-line">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <a href="mailto:lucielefevre2003@gmail.com">lucielefevre2003@gmail.com</a>
+    </div>
+    <div class="contact-line">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span>+33 6 68 68 62 57</span>
+    </div>
+    <div class="contact-line">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Paris, France</span>
+    </div>
+    <div class="contact-buttons">
+      <a href="https://www.linkedin.com/in/lucielefevrebl/" target="_blank" rel="noopener" class="contact-btn linkedin">LinkedIn</a>
+      <a href="mailto:lucielefevre2003@gmail.com" class="contact-btn primary">Get in touch</a>
+      <a href="docs/CV%20Lucie%20LEFEVRE%20-%20CDI.pdf" target="_blank" class="contact-btn cv">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        CV
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ══ CONTACT ════════════════════════════════════════════════ -->
-<section id="contact">
-  <p class="section-label">Contact</p>
-  <h2 class="section-title">Travaillons ensemble</h2>
-  <p>Une alternance, un projet, une collaboration ? Je suis disponible pour en discuter.</p>
-  <div class="contact-links">
-    <a href="mailto:lucielefevre2003@gmail.com" class="contact-link primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      lucielefevre2003@gmail.com
-    </a>
-    <a href="https://www.linkedin.com/in/lucielefevrebl/" target="_blank" rel="noopener" class="contact-link secondary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-      LinkedIn
-    </a>
-  </div>
-</section>
-
-<!-- ══ FOOTER ════════════════════════════════════════════════ -->
 <footer>
   © 2026 Lucie Lefèvre — Tous droits réservés
 </footer>
